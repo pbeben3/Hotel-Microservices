@@ -12,7 +12,9 @@ namespace Hotel.Discounts.Api.Extensions
                 Id = entity.Id,
                 Name = entity.Name,
                 Value = entity.Value,
-                Type = entity.Type,
+                Type = Enum.TryParse<DiscountType>(entity.Type, out var type)
+                    ? type
+                    : DiscountType.Percentage 
             };
             return result;
         }

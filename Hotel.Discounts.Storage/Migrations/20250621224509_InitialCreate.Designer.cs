@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hotel.Discounts.Storage.Migrations
 {
     [DbContext(typeof(DiscountDbContext))]
-    [Migration("20250621093648_InitialCreate")]
+    [Migration("20250621224509_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -90,9 +90,6 @@ namespace Hotel.Discounts.Storage.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("MinNights")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -100,8 +97,7 @@ namespace Hotel.Discounts.Storage.Migrations
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Value")
                         .HasColumnType("decimal(18,2)");

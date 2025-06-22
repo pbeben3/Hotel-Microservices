@@ -64,7 +64,6 @@ namespace Hotel.Reservations.Api.Services
 
         public async Task<CrudOperationResult<ReservationDto>> Create(CreateReservationRequest request)
         {
-            // Pobierz lub synchronizuj klienta i zniżkę
             await _customerResolver.ResolveFor(request.CustomerId);
             var discount = await _discountResolver.ResolveFor(request.CustomerId);
 
@@ -81,9 +80,9 @@ namespace Hotel.Reservations.Api.Services
 
             if (discount != null)
             {
-                if (discount.Type.Equals("procentowa", StringComparison.OrdinalIgnoreCase))
+                if (discount.Type.Equals("Percentage", StringComparison.OrdinalIgnoreCase))
                     finalPrice = basePrice * (1 - discount.Value / 100m);
-                else if (discount.Type.Equals("kwotowa", StringComparison.OrdinalIgnoreCase))
+                else if (discount.Type.Equals("FixedAmount", StringComparison.OrdinalIgnoreCase))
                     finalPrice = basePrice - discount.Value;
 
                 finalPrice = Math.Max(finalPrice, 0);

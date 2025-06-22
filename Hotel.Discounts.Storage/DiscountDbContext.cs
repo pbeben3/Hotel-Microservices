@@ -31,6 +31,10 @@ namespace Hotel.Discounts.Storage
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Discount>()
+                .Property(cd => cd.Type)
+                .HasConversion<string>();
         }
     }
 }

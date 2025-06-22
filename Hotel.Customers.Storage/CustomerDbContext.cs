@@ -20,6 +20,7 @@ namespace Hotel.Customers.Storage
             _configuration = configuration;
         }
 
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer(@"server=LEGION;database=customers-dev;Trusted_Connection=True;TrustServerCertificate=True",

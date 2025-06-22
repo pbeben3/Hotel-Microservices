@@ -12,7 +12,7 @@ namespace Hotel.Discounts.Api.Extensions
                 Id = entity.Id,
                 Name = entity.Name,
                 Value = entity.Value,
-                Type = entity.Type,
+                Type = entity.Type.ToString()
             };
             return result;
         }

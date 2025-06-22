@@ -20,9 +20,12 @@ namespace Hotel.Discounts.Storage.Entities
         [Required]
         public decimal Value { get; set; } 
 
+        //[Required]
+        //[MaxLength(20)]
+        //public string Type { get; set; } = "Percentage";
+
         [Required]
-        [MaxLength(20)]
-        public string Type { get; set; } = "Percentage"; 
+        public DiscountType Type { get; set; } = DiscountType.Percentage;
 
 
         public virtual ICollection<CustomerDiscount> CustomerDiscounts { get; set; } = new List<CustomerDiscount>();

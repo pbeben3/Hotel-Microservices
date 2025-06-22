@@ -35,6 +35,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Reservations.Api", "H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Reservations.Storage", "Hotel.Reservations.Storage\Hotel.Reservations.Storage.csproj", "{93D09249-1CC1-49F1-9F82-83A697B0BDF8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7F6322E9-A34A-407A-BCDC-E8FD45C90224}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerService.Tests", "CustomerService.Tests\CustomerService.Tests.csproj", "{D414A218-D547-408C-8067-3BE3F8735969}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +93,10 @@ Global
 		{93D09249-1CC1-49F1-9F82-83A697B0BDF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93D09249-1CC1-49F1-9F82-83A697B0BDF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93D09249-1CC1-49F1-9F82-83A697B0BDF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D414A218-D547-408C-8067-3BE3F8735969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D414A218-D547-408C-8067-3BE3F8735969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D414A218-D547-408C-8067-3BE3F8735969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D414A218-D547-408C-8067-3BE3F8735969}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,6 +114,7 @@ Global
 		{99F8C6AF-0727-4218-9529-F49027956185} = {2478B0C0-8C14-4319-BA65-F89755BBF840}
 		{30294560-3D7A-43E2-8DAA-019FF7F7C6C7} = {2478B0C0-8C14-4319-BA65-F89755BBF840}
 		{93D09249-1CC1-49F1-9F82-83A697B0BDF8} = {2478B0C0-8C14-4319-BA65-F89755BBF840}
+		{D414A218-D547-408C-8067-3BE3F8735969} = {7F6322E9-A34A-407A-BCDC-E8FD45C90224}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A39D0CCB-95F4-437F-BB06-1E73B669A4E9}
