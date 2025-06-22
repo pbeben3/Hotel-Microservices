@@ -1,0 +1,515 @@
+{
+	"info": {
+		"_postman_id": "4442f843-220c-479f-b13c-eeec831ccade",
+		"name": "Hotel.Integration.Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46094206"
+	},
+	"item": [
+		{
+			"name": "MicroservicesIntegration-FullPath",
+			"item": [
+				{
+					"name": "CreateCustomer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"pm.environment.set(\"customerId\", response.id);\r",
+									"pm.test(\"Customer created\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.expect(response.id).to.exist;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"c8508342-526b-495d-a3d0-fc4a69b3e39c\",\r\n  \"firstName\": \"Jan\",\r\n  \"lastName\": \"Kowalski\",\r\n  \"email\": \"jan@example.com\",\r\n  \"phoneNumber\": \"123456789\",\r\n  \"address\": \"Aleje Jerozolimskie 23\",\r\n  \"city\": \"Warszawa\",\r\n  \"country\": \"Polska\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4371/api/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4371",
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateRoom",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"pm.environment.set(\"roomId\", response.id);\r",
+									"pm.test(\"Room created\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.expect(response.id).to.exist;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"b5502bd3-ab1f-4ab2-a854-0fbcb06d6025\",\r\n  \"name\": \"Pokój nr.1\",\r\n  \"capacity\": 3,\r\n  \"pricePerNight\": 250\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5164/api/rooms",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5164",
+							"path": [
+								"api",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateDiscount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"pm.environment.set(\"discountId\", response.id);  \r",
+									"\r",
+									"pm.test(\"Status 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"0c0b7af2-dfec-411a-b1dd-f88b9b96350e\",\r\n  \"name\": \"Zniżka powitalna\",\r\n  \"value\": 10,\r\n  \"type\": \"Percentage\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5154/api/discounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5154",
+							"path": [
+								"api",
+								"discounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AssignDiscount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json();\r",
+									"pm.environment.set(\"customerDiscountId\", response.id); \r",
+									"\r",
+									"pm.test(\"Discount assigned\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerId\": \"{{customerId}}\",\r\n  \"discountId\": \"{{discountId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5154/api/customer-discounts/assign",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5154",
+							"path": [
+								"api",
+								"customer-discounts",
+								"assign"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SetDiscountAsActive",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200 - Discount activated\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"pm.test(\"Discount activation success\", () => {\r",
+									"    pm.expect(response.isActive).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5154/api/customer-discounts/{{customerDiscountId}}/activate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5154",
+							"path": [
+								"api",
+								"customer-discounts",
+								"{{customerDiscountId}}",
+								"activate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateReservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Reservation created\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    let response = pm.response.json();\r",
+									"    pm.environment.set(\"reservationId\", response.id);\r",
+									"    pm.expect(response.id).to.exist;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerId\": \"{{customerId}}\",\r\n  \"roomId\": \"{{roomId}}\",\r\n  \"startDate\": \"2025-06-22T09:34:30.399Z\",\r\n  \"endDate\": \"2025-06-25T09:34:30.399Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5164/api/reservations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5164",
+							"path": [
+								"api",
+								"reservations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCreatedReservation",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const reservation = pm.response.json();\r",
+									"pm.test(\"Contains correct customerId\", () => {\r",
+									"    pm.expect(reservation.customerId).to.eql(pm.environment.get(\"customerId\"));\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5164/api/reservations/{{reservationId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5164",
+							"path": [
+								"api",
+								"reservations",
+								"{{reservationId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "CreateSampleCustomer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let response = pm.response.json();\r",
+									"pm.environment.set(\"customerId\", response.id);\r",
+									"pm.test(\"Customer created\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.expect(response.id).to.exist;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"6cd8dac5-a0ed-4b76-9e16-26e07462ceb5\",\r\n  \"firstName\": \"Adam\",\r\n  \"lastName\": \"Nowak\",\r\n  \"email\": \"anowak@example.com\",\r\n  \"phoneNumber\": \"333222111\",\r\n  \"address\": \"Przykładowa 99\",\r\n  \"city\": \"Poznań\",\r\n  \"country\": \"Polska\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4371/api/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4371",
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetSampleCustomerById",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200 - Customer found\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Response contains correct ID\", () => {\r",
+									"    pm.expect(response.id).to.eql(pm.environment.get(\"customerId\"));\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response contains expected fields\", () => {\r",
+									"    pm.expect(response).to.have.property(\"firstName\");\r",
+									"    pm.expect(response).to.have.property(\"lastName\");\r",
+									"    pm.expect(response).to.have.property(\"email\");\r",
+									"    pm.expect(response).to.have.property(\"phoneNumber\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4371/api/customers/{{customerId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4371",
+							"path": [
+								"api",
+								"customers",
+								"{{customerId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateClientData",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 200 - Customer updated\", () => {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"{{customerId}}\",\r\n  \"firstName\": \"Adam\",\r\n  \"lastName\": \"Nowak-Edytowany\",\r\n  \"email\": \"anowak@example.com\",\r\n  \"phoneNumber\": \"333222111\",\r\n  \"address\": \"Przykładowa 99\",\r\n  \"city\": \"Poznań\",\r\n  \"country\": \"Polska\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4371/api/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4371",
+							"path": [
+								"api",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteClient",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status 204 - Customer deleted\", () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4371/api/customers/{{customerId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4371",
+							"path": [
+								"api",
+								"customers",
+								"{{customerId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

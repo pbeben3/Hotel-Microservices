@@ -35,9 +35,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Reservations.Api", "H
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Reservations.Storage", "Hotel.Reservations.Storage\Hotel.Reservations.Storage.csproj", "{93D09249-1CC1-49F1-9F82-83A697B0BDF8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7F6322E9-A34A-407A-BCDC-E8FD45C90224}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{7F6322E9-A34A-407A-BCDC-E8FD45C90224}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerService.Tests", "CustomerService.Tests\CustomerService.Tests.csproj", "{D414A218-D547-408C-8067-3BE3F8735969}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTestsPostman", "IntegrationTestsPostman", "{D2E41780-5043-41D7-84D5-6FF47586B185}"
+	ProjectSection(SolutionItems) = preProject
+		IntegrationTestsPostman\Hotel.Integration.Tests.postman_collection.json = IntegrationTestsPostman\Hotel.Integration.Tests.postman_collection.json
+		IntegrationTestsPostman\Hotel.Tests.Enviroment.postman_environment.json = IntegrationTestsPostman\Hotel.Tests.Enviroment.postman_environment.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
